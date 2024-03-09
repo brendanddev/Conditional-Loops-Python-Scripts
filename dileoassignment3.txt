@@ -1,0 +1,141 @@
+#Brendan Dileo, 000879513, certify's that this is my own effort and I have not allowed anybody else to copy from it.
+
+#Question 1a: Acidity of a Substance
+
+def question1a(ph): #Iam defining the function 'question1a' that has one parameter, and which will take a positive float number as input of the acidity levels, and return how acidic the substance is using if statements.
+    
+    if ph > 0:
+
+        if ph == 7: #This if statement will check if the input provided is equal to 7, because 7 is considered neutral.
+            return f" Your acidity levels are {ph}, its considered Neutral " #If the input provided is equal to 7, the function will return this statement, the curly brackets will show the user they're input, it will display the number assigned to that variable.
+        elif ph > 10: #If not equal to 7, the if statement will then check if the input is greater than 10. This is because a substance greater than 10 will be VERY Alkaline.
+            return f" Your acidity levels are {ph}, its considered Very Alkiline " #If the input is greater than 10, the function will return the string that says the input is VERY Alkaline.
+        elif ph > 7: #If not equal to 7, or greater than 10, the if statement will then check if the input is greater than 7. This is because any substance greater than 7 will be Alakline. However, if it is greater than 7, and greater than 10, to avoid a bug the loop needs to check if the input is greater than 10 first. This bug happend to me.
+            return f" Your acidity levels are {ph}, its considered Alkiline " #If the input is greater than 7, the function will return the string that its Alkaline.
+        elif ph < 4: #If not equal to 7, greater than 10, or greater than 7, the if statement will check if the input is equal to, or less than 4. This is because a input of 4, and below will mean the substance will be VERY Acidic.
+            return f" Your acidity levels are {ph}, its considered Very Acidic " #If the input is less than, or equal to 4 the function will return the following statement letting the user know that given the input it will be VERY Acidic.
+        elif ph < 7 and ph >= 4: #If not equal to 7, greater than 10, greater than 7, or less than or equal to 4, the if statement will assume given the input being less than 7, and greater than 4 that the inpu will be Acidic.
+            return f" Your acidity levels are {ph}, its considered Acidic " #If the input is less than 7, and greater than 4, the function lets the user know that theyre input is Acidic.
+
+    else: #This if(else) statement will run if the ph is less than 0, and will return an error as the ph cannot be less than 0, as this gave me bugs within my code.
+        return f" Error! pH levels should be higher than 0. You entered {ph} " #The function will return that the input is invalid and caused an error, and the user can then see the value that gave an error to avoid doing it again.
+
+ph = float(input( " Enter the ph levels: ")) #Here I have assigned the variable ph to the float, that will be the user's input. This will check given the input, if the value is considered Alkiline, Acidic, or Neutral.
+
+ans = question1a(ph) #I have assigned the variable 'ans' in order to call upon the function, and assigning the result given taking the user's input as variable 'ph' saved into 'ans'.
+
+print(ans) #The function will now be displayed, as the print function will print it to the user's screen.
+
+#Question1b: Habitable Planet
+
+def question1b(min_temp, max_temp): #Iam defining the function 'question1b' that has two parameters, and will take two float numbers from the user, as min_temp, and max_temp as a planets minumum and maximum temperatures. Given the user's inputs the function will then return if the planet will have liquid water, if it will be able to grow crops, and if the planet is considered habitable for humans.
+    
+    water = "" #Here I have assigned the variable 'water' to an empty string because we do not know yet if the planet will have water or not. The function will determine this after the temperatures have been input by the user.
+    
+    crops = "" #Here I have assigned the variable 'crops' to an empty string because we do not know if the planet will be able to grow crops or not. The function will determine this after the temperatures have been input by the user.
+    
+    habitablePlanet = "" #Here I have assigned the variable 'habitablePlanet' to an empty string because we do not know if the planet will be habitable or not. The function will determine this after the temperatures have been input by the user, and we see if water is found, and crops can grow.
+
+    if min_temp > 0 and max_temp < 100: #This if statement is going to check if the user's inputs are greater than 0, AND less than 100. I am doing this because if the planets maximum temperature is less than 100, and the minumum temperature is greater than 0 (temps are inputs), the planet can have water.
+        water = "Liquid water is found here" #The function will return this string if the planet can have liquid water.
+        if min_temp > 21 and max_temp < 32: #The if statement will then come down to the nested if statement to check if the planet can grow crops. Yes it can have water, but in order to grow crops the planet must have min and max temps must be greater than 21, but less than 32. If it is, then the planet can have liquid water, and can grow crops.
+            crops = "Crops can grow here" #The function will return that string if the planet can also grow crops given the user inputs.
+            habitablePlanet = "This planet is habitable for humans" #The variable 'habitablePlanet' will now be assigned this string because the planet can have liquid water, and can grow crops, therefore the plane is habitable.
+        else: #This nested if statement will come down to this point if the planet can have water, but cannot grow crops given the users inputs for min and max temps.
+            crops = "Crops cannot grow here" #If the inputs have a min_temp less than 21, and a max_temp greater than 32, the planet will not be able to grow crops, despite having water.
+            habitablePlanet = "This planet will not be habitable for humans" #'habitablePlanet' will now be assigned to that string as the planet must be able to grow crops, and have water to be habitable, and given the inputs crops wont grow there, so it is not habitable.
+    else: #This if statement exits the nested if statement and comes back to wether or not the planet can have water given the user's inputs. This assumes the planet can not have water, and if the planet cannot have water we know forsure that crops cannot grow there, and that it is not habitable either.
+        water = "Liquid water is not found here" #The variable water is instead assigned to the string that water is not found on the planet because the min_temp was less than 0, and the max_temp was greater than 100.
+        crops = "Crops cannot grow here" #Given water is not found on the planet, so crops will not grow there, the variable is now assigned to this new string.
+        habitablePlanet = "This planet will not be habitable for humans" #Given water is not found on the planet, and crops cannot grow on the planet, the variable is assigned to the new string.
+    return f" {water}, {crops}, and {habitablePlanet} " #The function will now return wether or not the planet has water, can grow crops, and if it is habitable given the minumum and maximum temperatures of the planet which is entered by the user.
+
+min_temp = float(input("Enter the planets minumum temperature in degree's celcius: ")) #The variable min_temp will be the Minumum Temperarure of the planet that will be assigned to the user entered float value.
+
+max_temp = float(input("Enter the planets maximum temperature in degree's celcius:")) #The variable max_temp will be the Maximum Temperature of the planet that will be assigned to the user entered float value.
+
+ans = question1b(min_temp, max_temp) #I have assigned the variable 'ans' in order to call upon the function, and assign the result of the function given taking the user's input as variables 'min_temp' and 'max_temp' saved into 'ans'.
+
+print(ans) #The function will now be displayed as the print function will display the function result to the user's screen.
+
+#Question 1c: Triangle Type
+
+def question1c(a, b, c): #I am defining the function 'question1c' that has three paramteres, and will take three integer numbers from the user as 'a', 'b', and 'c' which represent a side length of a triangle. The function will tell the user if it is a triangle, and the triangle type.
+
+    
+    if a > 0 and b > 0 and c > 0:
+
+        triangle = a + b > c and b + c > a and a + c > b #The boolean variable 'triangle' will determine if the sides form a triangle using 'AND' statements and boolean logic. In order for the variable to be assigned to true, each condition must be true. If not, the 'triangle' variable will be assigned to false, as it is not a triangle.
+
+        if triangle: #This if statement will run when the 'triangle' variable is True. It is saying If triangle is true, the following code will run.
+            if a == b and c == b: #This nested if statement will determine the triangle type. If 'a' side is equal to 'b' side, AND 'c' side is equal to 'b' side, AND side 'a' is equal to side 'c', this will mean all sides are equal, therefore it will be an equilateral triangle.
+                return " This will be an Equilateral Triangle " #If the statement is True, the function will return the string that the triangle is equilateral given the user's inputs.
+            elif a != b and b != c and a != c: #This if statement says if all sides are not equal, but side 'a' is not equal to side 'b', AND side 'b' is not equal to side 'c', AND side 'a' is not equal to side 'c', this will mean although it is a triangle, no sides are equal so it will be a scalene triangle.
+                return " This will be a Scalene Triangle given no sides match " #If the statement was True, the function will the return the string that the triangle is a scalene given the user's inputs.
+            else: #This if(else) statement says that if the triangle is not scalene, or equilateral meaning all sides are not equal, aswell as all sides not being different, this means two sides must be the same, therefore the triangle would be a Isosceles triangle.
+                return " This will be a Isosceles Triangle given two sides match " #If the statement was True, the function will return the string that the triangle is a isosceles triangle given the user's inputs.
+        
+        else: #This if statement will come back to wether or not the 'triangle' variable is True. This if(else) statement will mean the variable is False, therefore given the inputs it will not be a triangle.
+            return "This will not be a triangle given the measurements" #Since the variable was False, the function will return the string that it is not a triangle given the user's inputs.
+    else:
+        return f" Error! Each side needs to be greater than 0, you entered {a}, {b}, and {c}. "
+
+a = int(input("Enter a measurement for the 'a' side length: ")) #The variable 'a' will be the a side length of the triangle, that will be assigned to the user entered integer value.
+
+b = int(input("Enter a measurement for the 'b' side length: ")) #The variable 'b' will be the b side length of the triangle, that will be assigned to the user entered integer value.
+
+c = int(input("Enter a measurement for the 'c' side length: ")) #The variable 'c' will be the c side length of the triangle, that will be assigned to the user entered integer value.
+
+ans = question1c(a, b, c) #I have assigned the variable 'ans' to call upon the function, and assign the result of the function given taking the user's inputs as variables 'a', 'b', and 'c' saved into 'ans'.
+
+print(ans) #The function will now be displayed as the print function will display the function of function result to the user's screen.
+
+#----Question 2---- Loops
+
+print( "Welcome to the menu, please make a selecion..." ) #This function will start once the user has gone through the first three modules/functions, they will be prompted with the menu via the print function as it prints the string.
+
+userInput = "" #The variable 'userInput' is assigned to an empty string. This is because we do not know the what the user has input into the menu yet.
+
+while True: #The menu is now in a while loop, which will be infinite letting the user continously use the functions until they program is exited. The user will be able to exit the while loop if they would like.
+    userInput = input( "Enter 'quit' to quit the program, or choose a question to anwser: '1a, 1b, 1c'") #The variable 'userInput' is re-assigned from an empty string to the users input of options 'quit', '1a', '1b', or '1c' as this string appears on there screen before they input anything.
+
+    if userInput == "quit": #Inside the while loop, this if statement will execute the next line of code if the variable 'userInput' is the same as the string 'quit'.
+        break #The while loop will now break(exit) given the user has input that as the option of choice.
+    
+    elif userInput == "1a": #Inside the while loop, this if statement will execute the next lines of code if the variable 'userInput' is the same as the string '1a'. Meaning the user has entered "1a".
+
+        ph = float(input( "Enter the ph levels: ")) #The following code will run exactly as the first function would on the first run through. User is asked for the ph as a float number, and it is stored in the 'ph' variable.
+
+        if ph > 0: #Like the initial function, the code will run when the user input's correct numbers.
+            ans = question1a(ph)  #I have assigned the variable 'ans' in order to call upon the function, and assigning the result given taking the user's input as variable 'ph' saved into 'ans'.
+            print(ans) #The function will now be displayed, as the print function will print it to the user's screen. The user will then be prompted with the menu string, as it is still in the while loop.
+        else: 
+            print(" Error! pH levels should be higher than 0. You entered", ph )
+
+    elif userInput == "1b": #Inside the while loop, this if statement will execute the next lines of code if the variable 'userInput' is the same as '1b'. Meaning the user has entered "1b"
+
+        min_temp = float(input("Enter the planets minumum temperature in degree's celcius: ")) #The variable min_temp will be the Minumum Temperarure of the planet that will be assigned to the user entered float value.
+        
+        max_temp = float(input("Enter the planets maximum temperature in degree's celcius:")) #The variable max_temp will be the Maximum Temperature of the planet that will be assigned to the user entered float value.
+        
+        if min_temp > -150 and max_temp < 101: #This if statement will run the next lines of code if the user's input 'min_temp' is greater than -150, and 'max_temp' less than 101, giving the user a broad range of values to work with in determining if the planet is habitable.
+            ans = question1b(min_temp, max_temp) #I have assigned the variable 'ans' in order to call upon the function, and assign the result of the function given taking the user's input as variables 'min_temp' and 'max_temp' saved into 'ans'.
+            print(ans) #The function will now be displayed as the print function will display the function result to the user's screen.
+
+    elif userInput == "1c": #Inside the while loop, this if statement will execute the next lines of code if the variable 'userInput' is the same as '1c'. Meaning the user has entered "1c"
+
+        triangle = a + b > c and b + c > a and a + c > b #The boolean variable 'triangle' will determine if the sides form a triangle using 'AND' statements and boolean logic. In order for the variable to assigned to true, each condition must be true. If not, the 'triangle' variable will be assigned to false, as it is not a triangle.
+
+        a = float(input("Enter a measurement for the 'a' side length: ")) #The variable 'a' will be the a side length of the triangle, that will be assigned to the user entered integer value.
+        
+        b = float(input("Enter a measurement for the 'b' side length: ")) #The variable 'b' will be the b side length of the triangle, that will be assigned to the user entered integer value.
+        
+        c = float(input("Enter a measurement for the 'c' side length: ")) #The variable 'c' will be the c side length of the triangle, that will be assigned to the user entered integer value.
+
+        if a > 0 and b > 0 and c > 0: #This if statement will run the next lines of code if the user's inputs as side values are all greater than 0. The reason behind this is that triangles cannot have a negative side length.
+            ans = question1c(a, b, c)  #I have assigned the variable 'ans' to call upon the function, and assign the result of the function given taking the user's inputs as variables 'a', 'b', and 'c' saved into 'ans'.
+            print(ans) #The function will now be displayed as the print function will display the function of function result to the user's screen.
+        else:
+            print( " Error! Each side needs to be greater than 0." ) #This if(else) statement will run if the user has entered a value less than 0 for one of the sides letting them know they have gotten an error, and done something wrong.
+    else:
+        print( "Invalid choice, Enter 'quit' to quit the program, or choose a question to anwser: '1a, 1b, 1c'") #This if(else) statement will run if the user enters a string other than 'quit', '1a', '1b', or '1c' as theyre choice for the menu. The program will tell them they have gotten an error, and the while loop will prompt them to re-enter theyre choice.
